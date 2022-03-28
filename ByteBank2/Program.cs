@@ -10,38 +10,26 @@ namespace ByteBank2
     {
         static void Main(string[] args)
         {
+            
+
+            Console.WriteLine("Execução finalizada. Tecle enter para sair");
+            Console.ReadLine();
+        }
+        private void TestaInnerException()
+        {
             try
             {
-                ContaCorrente conta = new ContaCorrente(514, 3333);
-                conta.Depositar(50);
-                Console.WriteLine(conta.Saldo);
-                conta.Sacar(500);
-                
-            }
-            catch(ArgumentException ex)
-            {
-                if(ex.ParamName == "numero")
-                {
-                    Console.WriteLine("Argumento com problema: " + ex.ParamName);
-                    
-                }
-                Console.WriteLine("Excecao do tipo ArgumentException");
-                Console.WriteLine(ex.Message);
+                ContaCorrente conta1 = new ContaCorrente(4564, 789684);
+                ContaCorrente conta2 = new ContaCorrente(7891, 456794);
 
+                //conta1.Transferir(1000, conta2);
+                conta1.Sacar(1000);
             }
-            catch(SaldoInsuficienteException ex)
+            catch (OperacaoFinanceiraException e)
             {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("Exceção do tipo SaldoInsuficienteException ");
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-            Console.WriteLine(ContaCorrente.TaxaOperacao);
-
-            Console.ReadLine();
         }
     }
 }
